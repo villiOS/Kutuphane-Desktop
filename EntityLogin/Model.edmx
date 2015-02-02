@@ -1,0 +1,382 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="KutuphaneDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="adminName" Type="nvarchar" MaxLength="50" />
+          <Property Name="adminPassword" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Bolum">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="bolumAd" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="fakulteId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Fakulte">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fakulteAd" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kitaplar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kitapKodu" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="kitapAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="kategori" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="yayinYili" Type="datetime" Nullable="false" />
+          <Property Name="yazari" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ISBN" Type="nvarchar" MaxLength="13" Nullable="false" />
+          <Property Name="sayfaSayisi" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Odunc">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ogrenciId" Type="int" Nullable="false" />
+          <Property Name="kitapId" Type="int" Nullable="false" />
+          <Property Name="oduncTarih" Type="datetime" Nullable="false" />
+          <Property Name="teslimTarih" Type="datetime" Nullable="false" />
+          <Property Name="oduncDurum" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ogrenciler">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ogrenciNo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ogrenciAd" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ogrenciSoyad" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="bolumID" Type="int" Nullable="false" />
+          <Property Name="adres" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="memleketAdres" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="kayitTarih" Type="datetime" Nullable="false" />
+          <Property Name="cepTelefon" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Bolum_Fakulte">
+          <End Role="Fakulte" Type="Self.Fakulte" Multiplicity="1" />
+          <End Role="Bolum" Type="Self.Bolum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fakulte">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Bolum">
+              <PropertyRef Name="fakulteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Odunc_Kitaplar">
+          <End Role="Kitaplar" Type="Self.Kitaplar" Multiplicity="1" />
+          <End Role="Odunc" Type="Self.Odunc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kitaplar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Odunc">
+              <PropertyRef Name="kitapId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Odunc_Ogrenciler">
+          <End Role="Ogrenciler" Type="Self.Ogrenciler" Multiplicity="1" />
+          <End Role="Odunc" Type="Self.Odunc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ogrenciler">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Odunc">
+              <PropertyRef Name="ogrenciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ogrenciler_Bolum">
+          <End Role="Bolum" Type="Self.Bolum" Multiplicity="1" />
+          <End Role="Ogrenciler" Type="Self.Ogrenciler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bolum">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Ogrenciler">
+              <PropertyRef Name="bolumID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KutuphaneDBModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bolum" EntityType="Self.Bolum" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fakulte" EntityType="Self.Fakulte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kitaplar" EntityType="Self.Kitaplar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Odunc" EntityType="Self.Odunc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ogrenciler" EntityType="Self.Ogrenciler" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Bolum_Fakulte" Association="Self.FK_Bolum_Fakulte">
+            <End Role="Fakulte" EntitySet="Fakulte" />
+            <End Role="Bolum" EntitySet="Bolum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odunc_Kitaplar" Association="Self.FK_Odunc_Kitaplar">
+            <End Role="Kitaplar" EntitySet="Kitaplar" />
+            <End Role="Odunc" EntitySet="Odunc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odunc_Ogrenciler" Association="Self.FK_Odunc_Ogrenciler">
+            <End Role="Ogrenciler" EntitySet="Ogrenciler" />
+            <End Role="Odunc" EntitySet="Odunc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ogrenciler_Bolum" Association="Self.FK_Ogrenciler_Bolum">
+            <End Role="Bolum" EntitySet="Bolum" />
+            <End Role="Ogrenciler" EntitySet="Ogrenciler" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KutuphaneDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="adminName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="adminPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="KutuphaneDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admin" EntityType="Self.Admin" />
+          <EntitySet Name="Bolum" EntityType="KutuphaneDBModel.Bolum" />
+          <EntitySet Name="Fakulte" EntityType="KutuphaneDBModel.Fakulte" />
+          <EntitySet Name="Kitaplar" EntityType="KutuphaneDBModel.Kitaplar" />
+          <EntitySet Name="Odunc" EntityType="KutuphaneDBModel.Odunc" />
+          <EntitySet Name="Ogrenciler" EntityType="KutuphaneDBModel.Ogrenciler" />
+          <AssociationSet Name="FK_Bolum_Fakulte" Association="KutuphaneDBModel.FK_Bolum_Fakulte">
+            <End Role="Fakulte" EntitySet="Fakulte" />
+            <End Role="Bolum" EntitySet="Bolum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ogrenciler_Bolum" Association="KutuphaneDBModel.FK_Ogrenciler_Bolum">
+            <End Role="Bolum" EntitySet="Bolum" />
+            <End Role="Ogrenciler" EntitySet="Ogrenciler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odunc_Kitaplar" Association="KutuphaneDBModel.FK_Odunc_Kitaplar">
+            <End Role="Kitaplar" EntitySet="Kitaplar" />
+            <End Role="Odunc" EntitySet="Odunc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Odunc_Ogrenciler" Association="KutuphaneDBModel.FK_Odunc_Ogrenciler">
+            <End Role="Ogrenciler" EntitySet="Ogrenciler" />
+            <End Role="Odunc" EntitySet="Odunc" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Bolum">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="bolumAd" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fakulteId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Fakulte" Relationship="KutuphaneDBModel.FK_Bolum_Fakulte" FromRole="Bolum" ToRole="Fakulte" />
+          <NavigationProperty Name="Ogrenciler" Relationship="KutuphaneDBModel.FK_Ogrenciler_Bolum" FromRole="Bolum" ToRole="Ogrenciler" />
+        </EntityType>
+        <EntityType Name="Fakulte">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fakulteAd" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Bolum" Relationship="KutuphaneDBModel.FK_Bolum_Fakulte" FromRole="Fakulte" ToRole="Bolum" />
+        </EntityType>
+        <EntityType Name="Kitaplar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kitapKodu" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="kitapAdi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="kategori" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="yayinYili" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="yazari" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ISBN" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="sayfaSayisi" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Odunc" Relationship="KutuphaneDBModel.FK_Odunc_Kitaplar" FromRole="Kitaplar" ToRole="Odunc" />
+        </EntityType>
+        <EntityType Name="Odunc">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ogrenciId" Type="Int32" Nullable="false" />
+          <Property Name="kitapId" Type="Int32" Nullable="false" />
+          <Property Name="oduncTarih" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="teslimTarih" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="oduncDurum" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Kitaplar" Relationship="KutuphaneDBModel.FK_Odunc_Kitaplar" FromRole="Odunc" ToRole="Kitaplar" />
+          <NavigationProperty Name="Ogrenciler" Relationship="KutuphaneDBModel.FK_Odunc_Ogrenciler" FromRole="Odunc" ToRole="Ogrenciler" />
+        </EntityType>
+        <EntityType Name="Ogrenciler">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ogrenciNo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ogrenciAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ogrenciSoyad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="bolumID" Type="Int32" Nullable="false" />
+          <Property Name="adres" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="memleketAdres" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="kayitTarih" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cepTelefon" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Bolum" Relationship="KutuphaneDBModel.FK_Ogrenciler_Bolum" FromRole="Ogrenciler" ToRole="Bolum" />
+          <NavigationProperty Name="Odunc" Relationship="KutuphaneDBModel.FK_Odunc_Ogrenciler" FromRole="Ogrenciler" ToRole="Odunc" />
+        </EntityType>
+        <Association Name="FK_Bolum_Fakulte">
+          <End Type="KutuphaneDBModel.Fakulte" Role="Fakulte" Multiplicity="1" />
+          <End Type="KutuphaneDBModel.Bolum" Role="Bolum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fakulte">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Bolum">
+              <PropertyRef Name="fakulteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ogrenciler_Bolum">
+          <End Type="KutuphaneDBModel.Bolum" Role="Bolum" Multiplicity="1" />
+          <End Type="KutuphaneDBModel.Ogrenciler" Role="Ogrenciler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bolum">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Ogrenciler">
+              <PropertyRef Name="bolumID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Odunc_Kitaplar">
+          <End Type="KutuphaneDBModel.Kitaplar" Role="Kitaplar" Multiplicity="1" />
+          <End Type="KutuphaneDBModel.Odunc" Role="Odunc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kitaplar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Odunc">
+              <PropertyRef Name="kitapId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Odunc_Ogrenciler">
+          <End Type="KutuphaneDBModel.Ogrenciler" Role="Ogrenciler" Multiplicity="1" />
+          <End Type="KutuphaneDBModel.Odunc" Role="Odunc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ogrenciler">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Odunc">
+              <PropertyRef Name="ogrenciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KutuphaneDBModelStoreContainer" CdmEntityContainer="KutuphaneDBEntities">
+          <EntitySetMapping Name="Admin">
+            <EntityTypeMapping TypeName="KutuphaneDBModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="adminName" ColumnName="adminName" />
+                <ScalarProperty Name="adminPassword" ColumnName="adminPassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bolum">
+            <EntityTypeMapping TypeName="KutuphaneDBModel.Bolum">
+              <MappingFragment StoreEntitySet="Bolum">
+                <ScalarProperty Name="fakulteId" ColumnName="fakulteId" />
+                <ScalarProperty Name="bolumAd" ColumnName="bolumAd" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fakulte">
+            <EntityTypeMapping TypeName="KutuphaneDBModel.Fakulte">
+              <MappingFragment StoreEntitySet="Fakulte">
+                <ScalarProperty Name="fakulteAd" ColumnName="fakulteAd" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kitaplar">
+            <EntityTypeMapping TypeName="KutuphaneDBModel.Kitaplar">
+              <MappingFragment StoreEntitySet="Kitaplar">
+                <ScalarProperty Name="sayfaSayisi" ColumnName="sayfaSayisi" />
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="yazari" ColumnName="yazari" />
+                <ScalarProperty Name="yayinYili" ColumnName="yayinYili" />
+                <ScalarProperty Name="kategori" ColumnName="kategori" />
+                <ScalarProperty Name="kitapAdi" ColumnName="kitapAdi" />
+                <ScalarProperty Name="kitapKodu" ColumnName="kitapKodu" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Odunc">
+            <EntityTypeMapping TypeName="KutuphaneDBModel.Odunc">
+              <MappingFragment StoreEntitySet="Odunc">
+                <ScalarProperty Name="oduncDurum" ColumnName="oduncDurum" />
+                <ScalarProperty Name="teslimTarih" ColumnName="teslimTarih" />
+                <ScalarProperty Name="oduncTarih" ColumnName="oduncTarih" />
+                <ScalarProperty Name="kitapId" ColumnName="kitapId" />
+                <ScalarProperty Name="ogrenciId" ColumnName="ogrenciId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ogrenciler">
+            <EntityTypeMapping TypeName="KutuphaneDBModel.Ogrenciler">
+              <MappingFragment StoreEntitySet="Ogrenciler">
+                <ScalarProperty Name="cepTelefon" ColumnName="cepTelefon" />
+                <ScalarProperty Name="kayitTarih" ColumnName="kayitTarih" />
+                <ScalarProperty Name="memleketAdres" ColumnName="memleketAdres" />
+                <ScalarProperty Name="adres" ColumnName="adres" />
+                <ScalarProperty Name="bolumID" ColumnName="bolumID" />
+                <ScalarProperty Name="ogrenciSoyad" ColumnName="ogrenciSoyad" />
+                <ScalarProperty Name="ogrenciAd" ColumnName="ogrenciAd" />
+                <ScalarProperty Name="ogrenciNo" ColumnName="ogrenciNo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

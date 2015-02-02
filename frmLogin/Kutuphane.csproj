@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E126E063-BF23-4F54-B2EC-DF7A0927DE1D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>frmLogin</RootNamespace>
+    <AssemblyName>frmLogin</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="frmBulunanKitapGuncelleme.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBulunanKitapGuncelleme.Designer.cs">
+      <DependentUpon>frmBulunanKitapGuncelleme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmFakulteBolumKayit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFakulteBolumKayit.Designer.cs">
+      <DependentUpon>frmFakulteBolumKayit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmKitapGuncelle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKitapGuncelle.Designer.cs">
+      <DependentUpon>frmKitapGuncelle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmKitapKayit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKitapKayit.Designer.cs">
+      <DependentUpon>frmKitapKayit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmKitapListesi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKitapListesi.Designer.cs">
+      <DependentUpon>frmKitapListesi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOdunc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOdunc.Designer.cs">
+      <DependentUpon>frmOdunc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOduncRapor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOduncRapor.Designer.cs">
+      <DependentUpon>frmOduncRapor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOgrenciGuncelle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOgrenciGuncelle.Designer.cs">
+      <DependentUpon>frmOgrenciGuncelle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOgrenciKayit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOgrenciKayit.Designer.cs">
+      <DependentUpon>frmOgrenciKayit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOgrenciListesi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOgrenciListesi.Designer.cs">
+      <DependentUpon>frmOgrenciListesi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTeslim.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTeslim.Designer.cs">
+      <DependentUpon>frmTeslim.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KutuphaneDBDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KutuphaneDBDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmBulunanKitapGuncelleme.resx">
+      <DependentUpon>frmBulunanKitapGuncelleme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFakulteBolumKayit.resx">
+      <DependentUpon>frmFakulteBolumKayit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmKitapGuncelle.resx">
+      <DependentUpon>frmKitapGuncelle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmKitapKayit.resx">
+      <DependentUpon>frmKitapKayit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmKitapListesi.resx">
+      <DependentUpon>frmKitapListesi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOdunc.resx">
+      <DependentUpon>frmOdunc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOduncRapor.resx">
+      <DependentUpon>frmOduncRapor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOgrenciGuncelle.resx">
+      <DependentUpon>frmOgrenciGuncelle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOgrenciKayit.resx">
+      <DependentUpon>frmOgrenciKayit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOgrenciListesi.resx">
+      <DependentUpon>frmOgrenciListesi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTeslim.resx">
+      <DependentUpon>frmTeslim.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="KutuphaneDBDataSet.xsc">
+      <DependentUpon>KutuphaneDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="KutuphaneDBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>KutuphaneDBDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="KutuphaneDBDataSet.xss">
+      <DependentUpon>KutuphaneDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EntityLogin\Entity.csproj">
+      <Project>{4cf55f12-29fb-4ecb-bc62-531fc9e89f65}</Project>
+      <Name>Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
